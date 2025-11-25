@@ -54,7 +54,7 @@ To perform the analysis:
 
 3. Copy the dataset from the paper in the "Kurmangaliyev",
 
-4. Make sure to have a subfolder "results" in "clustering_analysis-master" (where the figures and files will be stored),
+4. In the "clustering_analysis-master" folder: create a folder named "results" (where the results figures and files will be stored),
 
 5. Run the "CreateSeuratObject.R" script with the following specification at the beginning:
    - the variable `datadir` should correctly point to the subfolder "data" created at step 2,
