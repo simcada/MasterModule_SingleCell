@@ -36,7 +36,7 @@ And the: `renv:::renv_python_conda_restore(".")`
 
 4. Exit RStudio
 
-5. In the .Rprofile file, add on the first row: `Sys.setenv('RETICULATE_PYTHON_ENV'='YourPATH/clustering_analysis/renv/python/condaenvs/renv-python')`
+5. In the .Rprofile file, add on the first row: `Sys.setenv('RETICULATE_PYTHON_ENV'='YourPATH/clustering_analysis-master/renv/python/condaenvs/renv-python')`
 
 6. Open Rstudio
 
