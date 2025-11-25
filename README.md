@@ -48,16 +48,20 @@ And the: `renv:::renv_python_conda_restore(".")`
 
 To perform the analysis:
 
-1. Create a folder named "data" at the project root and a subfolder of "results" where the figures and files will be stored,
+1. In the "share" folder: create a folder named "data",
 
-2. Copy the dataset in the "data" folder in a folder named "Kurmangaliyev"
+2. In the new "data"folder: create a folder named "Kurmangaliyev",
 
-3. Run the "CreateSeuratObject.R" script with the following specification at the beginning:
+3. Copy the dataset from the paper in the "Kurmangaliyev",
+
+4. Make sure to have a subfolder "results" in "clustering_analysis-master" (where the figures and files will be stored),
+
+5. Run the "CreateSeuratObject.R" script with the following specification at the beginning:
    - the variable `datadir` should correctly point to the subfolder "data" created at step 2,
    - the variable `savedir` should correctly point to the subfolder "results" created at step 1,
-   - the variable `metadata` should correctly point to the subfolder "Kurmangaliyev" created at step 2, 
+   - the variable `metadata` should correctly point to the subfolder "Kurmangaliyev" created at step 2,
 
-4. Run the "analysis_Subset.R" script (we will work with the Seurat object create with step 3) with the same specification that step 3
+6. Run the "analysis_Subset.R" script (we will work with the Seurat object create with step 3) with the same specification that step 3
 
 
 
