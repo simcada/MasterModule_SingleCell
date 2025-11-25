@@ -33,7 +33,7 @@ Error can happened at this stage, if so => install manually the different packag
 For example with: `renv::install("reticulate")` 
 And make a new snapshot of the environment with: `renv::snapshot()`
 
-  * And install the python environment with the command: renv:::renv_python_conda_restore(".")
+  * And install the python environment with the command: `renv:::renv_python_conda_restore(".")`
 
 4. Exit RStudio
 
