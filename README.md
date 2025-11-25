@@ -26,10 +26,10 @@ Conda is used to build the self-contained Python environment that hosts the foll
 3. Install the R environment with the R command: 
   * `install.packages("renv")`
   *and then: `renv::init(".")`
-  Error can happened at this stage, if so => install manually the different packages 
-  For example with: `renv::install("reticulate")` 
-  And make a new snapshot of the environment with: `renv::snapshot()`
-  And the: `renv:::renv_python_conda_restore(".")`
+ Error can happened at this stage, if so => install manually the different packages 
+ For example with: `renv::install("reticulate")` 
+ And make a new snapshot of the environment with: `renv::snapshot()`
+ And the: `renv:::renv_python_conda_restore(".")`
 4. Exit RStudio
 5. In the .Rprofile file, add on the first row: `Sys.setenv('RETICULATE_PYTHON_ENV'='YourPATH/clustering_analysis/renv/python/condaenvs/renv-python')`
 6. Open Rstudio
