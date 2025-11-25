@@ -1,6 +1,3 @@
-# MasterModule_SingleCell
-Master Winter module November 2025
-
 # Analysis of single-cell dataset
 
 Data from: Kurmangaliyev, et al. (2020), "Transcriptional Programs Of Circuit Assembly In The Drosophila Visual System", Neuron 108, 1045-1057.E6. doi:10.1016/J.Neuron.2020.10.006
@@ -48,12 +45,12 @@ To perform the analysis:
 
 2. Copy the dataset in the "data" folder in a folder named "Kurmangaliyev"
 
-3. Run the "CreateSeuratObject.R" script with the following specification at the begining:
+3. Run the "CreateSeuratObject.R" script with the following specification at the beginning:
    - the variable `datadir` should correctly point to the subfolder "data" created at step 2,
    - the variable `savedir` should correctly point to the subfolder "results" created at step 1,
    - the variable `metadata` should correctly point to the subfolder "Kurmangaliyev" created at step 2, 
 
-4. Run the "analysis_T4T5.R" script (we will work with the Seurat object create with step 3) with the same specification that step 3
+4. Run the "analysis_Subset.R" script (we will work with the Seurat object create with step 3) with the same specification that step 3
 
 
 
