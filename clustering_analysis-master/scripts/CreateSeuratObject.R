@@ -1,6 +1,11 @@
 # ------------------------------------------------------------------------#
-#                             Pre-processing dataset                      #
+#                             Create a Seurat object                      #
 # ------------------------------------------------------------------------#
+###########################################################################
+
+# -------------------------------------------------------------------------
+# Import packages
+# -------------------------------------------------------------------------
 
 #charge all packages DO ONLY ONCE
 #renv::restore()
@@ -50,6 +55,8 @@ library(tidyr)
 
 # -------------------------------------------------------------------------
 # Change Path accordingly to yours
+# -------------------------------------------------------------------------
+
 
 # path to read raw data
 datadir <- "/Users/groot/Downloads/ForMaster/share/data"
@@ -88,9 +95,8 @@ Sobject <- SeuratObject::AddMetaData(
 )
 
 #####################################################################################
-#### to work with a smaller dataset we will subset the big dataset to keep only     #
-#### in the W1118 dataset the celltype ("type'):                                    #
-#### Tm3, Mi4, Mi9, and T4.T5                                                       #
+#    to work with a smaller dataset we will subset the big dataset to keep only     #
+#    in the W1118 dataset the celltype ("type'): Tm3, Mi9, and T4.T5                #
 #####################################################################################
 
 #create the subset Sobject
@@ -100,6 +106,11 @@ Sobject <- subset(Sobject_W1118, subset = type %in% c("Tm3", "Mi9", "T4.T5"))
 
 #delete the first Sobject to keep only the subset Seurat object (to save space)
 rm(Sobject_W1118)
+
+
+# ---------------------------------------------------------------
+# QUALITY CONTROL AND FILTERING
+# ---------------------------------------------------------------
 
 # compute QC metrics
 Sobject <- PercentageFeatureSet(
@@ -171,6 +182,10 @@ Sobject <- SCTransform(
   vars.to.regress = "percent.mt", seed.use = 404
 )
 
+# ---------------------------------------------------------------
+# HIGHLY VARIABLE GENE SELECTION
+# ---------------------------------------------------------------
+
 # get the top 50 genes
 top_genes <- head(VariableFeatures(object = Sobject, assay = "SCT"), 50)
 
@@ -218,7 +233,7 @@ ncomp <- 25 #based on the PCA graph
 # ---------------------------------------------------------------
 
 # construct the shared nearest neighbors graph (SNN)
-n_neighbors <- 20
+n_neighbors <- 20 #how many neighbors to consider for each cell
 Sobject <- FindNeighbors(
   Sobject, dims = 1:ncomp, k.param = n_neighbors, annoy.metric = "cosine",
   n.trees = 200, prune.SNN = 1/15
@@ -230,10 +245,6 @@ Sobject <- FindClusters(
   Sobject, algorithm = 4, resolution = res_vec, n.iter = 100,
   random.seed = 666
 )
-
-#If you don't know which resolution you will use, you can inspect clustering results with custom colormap for SC3 stability index
-#gg <- clustree::clustree(Sobject, layout="sugiyama", use_core_edges = FALSE,node_colour = "sc3_stability" & scale_colour_gradientn(colors = rev(pals::plasma(256)[120:256]))
-#ggsave(file=file.path(savedir, "Sobject_clustree.svg"), device="svg",width = 8, height = 12, gg)
 
 # construct UMAP embedding with custom parameters
 Sobject <- RunUMAP(
