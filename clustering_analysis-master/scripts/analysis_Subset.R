@@ -1,6 +1,11 @@
 # ------------------------------------------------------------------------#
 #                 Analysis on a Seurat Object "Name.h5Seurat"             #
 # ------------------------------------------------------------------------#
+###########################################################################
+
+# -------------------------------------------------------------------------
+# Import packages
+# -------------------------------------------------------------------------
 
 # global imports
 import::from("magrittr", "%>%", .character_only=TRUE)
@@ -33,8 +38,11 @@ library(tidyverse)
 #renv::record("ggplot2@3.4.1")
 ggplot2::theme_set(theme_custom())
 
+
 # -------------------------------------------------------------------------
 # Change Path accordingly to yours
+# -------------------------------------------------------------------------
+
 
 # path to the folder where the raw data are stored
 datadir <- "/Users/groot/Downloads/ForMaster/share/data"
@@ -42,22 +50,30 @@ datadir <- "/Users/groot/Downloads/ForMaster/share/data"
 # path to the folder where to export figures and save data
 savedir <- "/Users/groot/Downloads/ForMaster/clustering_analysis-master/results"
 
+# -------------------------------------------------------------------------
+# Load Seurat Object
+# -------------------------------------------------------------------------
+
 # Load Seurat object
 Sobject <- LoadH5Seurat(file = file.path(savedir, "Kurmangaliyev_Subset.h5Seurat"))
 
-#check your Seurat object
+#check metadata of your Seurat object
 colnames(Sobject@meta.data)
 
 ### if other dataset are load, remove them to save space
 #rm(Sobject_W1118)
 
 # -------------------------------------------------------------------------
-# Look at UMAP graph
+# Choose clustering resolution 
 # -------------------------------------------------------------------------
 
-# choose clustering resolution (the number of clusters), for example here 0.5
+# choose clustering resolution (the number of clusters), for example here 3.5
 ident <- "SCT_snn_res.3.5"
 Idents(Sobject) <- ident
+
+# -------------------------------------------------------------------------
+# Look at UMAP graph
+# -------------------------------------------------------------------------
 
 #Look at umap, group by cell type
 gg <- DimPlot(Sobject, group.by = c("type"))
@@ -236,7 +252,7 @@ Sobject_24h <- subset(Sobject, subset = time == "24h")
 DimPlot(Sobject_24h, group.by = c("time"))
 DimPlot(Sobject_24h, group.by = c("type"))
 
-#can do the same as before then! 
+#then you can repeat all the previous steps! 
 
 
 
