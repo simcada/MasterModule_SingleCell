@@ -55,7 +55,9 @@ For example with:
 And make a new snapshot of the environment with: `renv::snapshot()`
 And restart your R session
 
-Note: if installation with R doesn't work, try installing via conda => example: in your terminal window: `conda install -c conda-forge r-seuratdisk`
+Note: if installation with R doesn't work, try installing via conda => example: in your terminal window: 
+  `conda install -c conda-forge r-seuratdisk`
+  or `pip install umap-learn`
 
 
 ---
