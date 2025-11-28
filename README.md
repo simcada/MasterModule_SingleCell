@@ -38,7 +38,7 @@ And make a new snapshot of the environment with: `renv::snapshot()`
 4. Exit RStudio
 
 5. In the .Rprofile file, add on the first row: `Sys.setenv('RETICULATE_PYTHON_ENV'='YourPATH/clustering_analysis-master/renv/python/condaenvs/renv-python')`
-
+(if you work on Windows: change / into \\) 
 6. Open Rstudio
 
 7. `reticulate::py_config()`
@@ -46,13 +46,13 @@ And make a new snapshot of the environment with: `renv::snapshot()`
 Error can happened at this stage, if so => install manually the different packages.
 For example with: 
   `install.packages("Matrix", repos = "http://R-Forge.R-project.org")` 
-  `isntall.packages('Seurat')`
-  `isntall.packages('remotes')`
+  `install.packages('Seurat')`
+  `install.packages('remotes')`
   `remotes::install_github("mojaveazure/seurat-disk")`
 And make a new snapshot of the environment with: `renv::snapshot()`
 And restart your R session
 
-Note: if installation with R doesnt work, try install via conda => exemple: in your terminal window: `conda install -c conda-forge r-seuratdisk`
+Note: if installation with R doesn't work, try installing via conda => example: in your terminal window: `conda install -c conda-forge r-seuratdisk`
 
 
 ---
