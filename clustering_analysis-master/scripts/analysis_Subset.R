@@ -101,9 +101,9 @@ gg <- Seurat::DoHeatmap(Sobject, assay="SCT", features=top3_genes$gene, group.by
 ggsave(file=paste0(savedir, "Top3_heatmap.jpeg"), device = "png",  width = 8, height = 8, gg)
 
 # visualize specific genes expression
-features <- c("dac","bi","grn") #change with genes of interest
+features <- c("shakB","Inx2","Inx5") #change with genes of interest
 visualize_markers(
-  Sobject, group.by = c("type"), features, ident, cmap, "dac_bi_grn_expression", savedir, device = "png"
+  Sobject, group.by = c("type"), features, ident, cmap, "shakB_Inx2_Inx5_expression", savedir, device = "png"
 ) #can change group.by by subtype, time...ect... 
 
 # -------------------------------------------------------------------------
