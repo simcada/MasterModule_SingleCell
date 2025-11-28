@@ -47,8 +47,12 @@ Error can happened at this stage, if so => install manually the different packag
 For example with: 
   `install.packages("Matrix", repos = "http://R-Forge.R-project.org")` 
   `isntall.packages('Seurat')`
+  `isntall.packages('remotes')`
+  `remotes::install_github("mojaveazure/seurat-disk")`
 And make a new snapshot of the environment with: `renv::snapshot()`
 And restart your R session
+
+Note: if installation with R doesnt work, try install via conda => exemple: in your terminal window: `conda install -c conda-forge r-seuratdisk`
 
 
 ---
