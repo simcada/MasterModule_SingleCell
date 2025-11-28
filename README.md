@@ -43,6 +43,14 @@ And make a new snapshot of the environment with: `renv::snapshot()`
 
 7. `reticulate::py_config()`
 
+Error can happened at this stage, if so => install manually the different packages.
+For example with: 
+  `install.packages("Matrix", repos = "http://R-Forge.R-project.org")` 
+  `isntall.packages('Seurat')`
+And make a new snapshot of the environment with: `renv::snapshot()`
+And restart your R session
+
+
 ---
 
 ## Usage
