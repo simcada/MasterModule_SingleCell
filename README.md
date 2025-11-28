@@ -25,7 +25,7 @@ Conda is used to build the self-contained Python environment that hosts the foll
 
 2. Open the Rproj file: "ClusteringAnalysis.Rproj"
 
-**IMPORTANT**: (if you work on **Windows**: change "/" into "\\") 
+**IMPORTANT**: (if you work on **Windows**: change "/" into "\ \") 
 
 3. Install the R environment with the R command: 
   * `install.packages("renv")`
