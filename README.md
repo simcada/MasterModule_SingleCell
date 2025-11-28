@@ -25,6 +25,8 @@ Conda is used to build the self-contained Python environment that hosts the foll
 
 2. Open the Rproj file: "ClusteringAnalysis.Rproj"
 
+**IMPORTANT**: (if you work on **Windows**: change / into \\) 
+
 3. Install the R environment with the R command: 
   * `install.packages("renv")`
   * and then: `renv::init(".")`
@@ -49,6 +51,7 @@ For example with:
   `install.packages('Seurat')`
   `install.packages('remotes')`
   `remotes::install_github("mojaveazure/seurat-disk")`
+  `install.packages('janitor')` 
 And make a new snapshot of the environment with: `renv::snapshot()`
 And restart your R session
 
