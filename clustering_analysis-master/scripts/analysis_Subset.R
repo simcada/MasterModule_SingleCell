@@ -48,7 +48,7 @@ ggplot2::theme_set(theme_custom())
 datadir <- "/Users/groot/Downloads/ForMaster/share/data"
 
 # path to the folder where to export figures and save data
-savedir <- "/Users/groot/Downloads/ForMaster/clustering_analysis-master/results"
+savedir <- "/Users/groot/Downloads/ForMaster/clustering_analysis-master/results/"
 
 # -------------------------------------------------------------------------
 # Load Seurat Object
@@ -88,6 +88,18 @@ gg <- DimPlot(Sobject, group.by = c("time"))
 ggsave(file=paste0(savedir, "Subset_time_UMAP.jpeg"), device = "png",  width = 8, height = 8, gg)
 
 # -------------------------------------------------------------------------
+# Find marker genes for the entire Seurat object
+# -------------------------------------------------------------------------
+
+#find markers genes
+markers <- FindAllMarkers(
+  Sobject, only.pos = TRUE, min.pct = 0.1, min.diff.pct = 0.50,
+  logfc.threshold = 0.25
+)
+# save result table
+export_markers(markers, ident, 10, savedir)
+
+# -------------------------------------------------------------------------
 # Look at gene expression
 # -------------------------------------------------------------------------
 
@@ -95,16 +107,21 @@ ggsave(file=paste0(savedir, "Subset_time_UMAP.jpeg"), device = "png",  width = 8
 top3_genes <- markers %>% 
   dplyr::group_by(cluster) %>% 
   dplyr::top_n(n = 3, wt = avg_log2FC)
-cmap <- get(colormap, envir = loadNamespace("pals"))
+
+cmap <- get("tol.rainbow", envir = loadNamespace("pals"))
 cols <- unname(cmap(nlevels(as.factor(Sobject@meta.data$type))))
-gg <- Seurat::DoHeatmap(Sobject, assay="SCT", features=top3_genes$gene, group.by="type", group.colors=cols)
-ggsave(file=paste0(savedir, "Top3_heatmap.jpeg"), device = "png",  width = 8, height = 8, gg)
+gg <- Seurat::DoHeatmap(
+  Sobject, assay="SCT", features=top3_genes$gene, group.by="type", group.colors=cols)
+ggsave(file=paste0(savedir, "Top3.jpeg"), device = "png",  width = 16, height = 16, gg)
+
 
 # visualize specific genes expression
-features <- c("shakB","Inx2","Inx5") #change with genes of interest
+features <- c("dac","bi","grn") #change with genes of interest
+cmap <- "alphabet" #if need more colors use "tol.rainbow"
 visualize_markers(
-  Sobject, group.by = c("type"), features, ident, cmap, "shakB_Inx2_Inx5_expression", savedir, device = "png"
+  Sobject, group.by = c("type"), features, ident, cmap, "dac_bi_grn_expression", savedir, device = "png"
 ) #can change group.by by subtype, time...ect... 
+
 
 # -------------------------------------------------------------------------
 # Look at gene through time
